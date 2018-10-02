@@ -5,56 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>GifTastic</title>
+    <title>Document</title>
 </head>
 
 <body>
+
     <br>
-    <div class= "container">
-        <button id="search-exbutton">EX:</button>
+    <div id="new-button">
+
     </div>
 
 
     <br><br>
-
     <form>
-        <input id="text-input" type= "text"><br>
-        <input id= "submit-input" type= "submit">
-    </form>
-    <div id= "images"></div>
 
+
+        <input id="text-input" type="text" name="" value=""><br><br>
+
+    </form>
+    <button id="submit-button">Submit</button>
+    <div id="images">
+    </div>
 
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
-    <script type="text/javascript" >
-    
-    function gifImageSearch(image) {
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=hj0ZAUE0IjfCkvuoazUXl20pNgnLFUSW&tag=" + image + "&rating=G";
+    <script type="text/javascript" src="app.js">
 
-    $.ajax({
-        URL: queryURL,
-        method: "GET"
-    }).then(function(response){
-        console.log(response);
-
-        $("#images").prepend(response.data.image_original_url);
-
-    });
-}
-
-
-$("#submit-input").on("click", function(event){
-
-    event.preventDefault();
-    
-    var textInput = $("#text-input").val().trim();
-console.log(textInput);
-    gifImageSearch(textInput);
-
-});
-    
     </script>
 </body>
 
