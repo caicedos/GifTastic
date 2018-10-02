@@ -6,7 +6,7 @@
     var textInput = $("#text-input").val().trim();
     console.log(textInput);
 
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=hj0ZAUE0IjfCkvuoazUXl20pNgnLFUSW&tag=" + textInput;
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + textInput;
 
 
     $.ajax({
@@ -64,7 +64,7 @@
     array.push(textInput);
     console.log(textInput);
     
-
+    displayGif();
    
     renderButtons();
   });
