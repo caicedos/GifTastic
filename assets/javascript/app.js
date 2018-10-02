@@ -1,76 +1,83 @@
+var array = []
 
-  var array = []
-  
-  function displayGif() {
+console.log(array);
 
-    var textInput = $("#text-input").val().trim();
-    console.log(textInput);
+function savedButtonGif() {
+  var textInput = $(this).val();
+  console.log(textInput);
 
-    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + textInput;
+  var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=hj0ZAUE0IjfCkvuoazUXl20pNgnLFUSW&tag=" + textInput;
 
+  console.log(queryURL);
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
+    var imageUrl = response.data.image_original_url;
 
-      .then(function(response) {
+    var gifImage = $("<img>");
 
-        var imageUrl = response.data.image_original_url;
+    gifImage.attr("src", imageUrl);
+    gifImage.attr("alt", "Gif" + textInput);
 
-        var gifImage = $("<img>");
-
-    
-        gifImage.attr("src", imageUrl);
-        gifImage.attr("alt", "cat image");
-
-        $("#images").prepend(gifImage);
-      });
-
-    }
-  function renderButtons() {
-
-    
-    $("#new-button").empty();
-
-    
-    for (var i = 0; i < array.length; i++) {
-
-      var a = $("<button>");
-   
-      a.addClass("buttons");
-    
-      a.attr("data-name", array[i]);
-    
-      a.text(array[i]);
-     
-      $("#new-button").append(a);
-
-    }
-
-
-   
-    
-
-  }
-
- 
-  $("#submit-button").on("click", function(event) {
-    event.preventDefault();
-
-   
-    var textInput = $("#text-input").val().trim();
-
-    array.push(textInput);
-    console.log(textInput);
-    
-    displayGif();
-   
-    renderButtons();
+    $("#images").prepend(gifImage);
   });
 
- 
-  $(document).on("click", ".buttons", displayGif);
+}
 
- 
+function displayGif() {
+
+  var textInput = $("#text-input").val().trim();
+  console.log(textInput);
+
+  var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=hj0ZAUE0IjfCkvuoazUXl20pNgnLFUSW&tag=" + textInput;
+
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function (response) {
+
+    var imageUrl = response.data.image_original_url;
+
+    var gifImage = $("<img>");
+
+    gifImage.attr("src", imageUrl);
+    gifImage.attr("alt", "Gif" + textInput);
+
+    $("#images").prepend(gifImage);
+  });
+
+}
+
+function renderButtons() {
+
+  $("#new-button").empty();
+
+  for (var i = 0; i < array.length; i++) {
+
+    var button = $("<button>");
+
+    button.addClass("buttons");
+    button.attr("value", array[i]);
+    button.attr("data-name", array[i]);
+    button.text(array[i]);
+
+    $("#new-button").append(button);
+  }
+}
+
+$("#submit-button").on("click", function (event) {
+  event.preventDefault();
+
+  var textInput = $("#text-input").val().trim();
+
+  array.push(textInput);
+  console.log(textInput);
+
+  displayGif();
   renderButtons();
+});
+
+$(document).on("click", ".buttons", savedButtonGif);
