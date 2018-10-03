@@ -1,5 +1,20 @@
-var array = []
+defaultButtons();
+var array = [];
 
+function defaultButtons() {
+  $.each(["cat", "dog", "catdog"], function (index, value) {
+
+    var button = $("<button>");
+    button.addClass("buttons");
+    button.attr("value", value);
+    button.attr("data-name", value);
+    button.text(value);
+
+    $("#new-button").append(button);
+
+
+  });
+}
 console.log(array);
 
 function savedButtonGif() {
@@ -42,9 +57,9 @@ function displayGif() {
     var imageUrl = response.data.image_original_url;
 
     var gifImage = $("<img>");
-
+    
     gifImage.attr("src", imageUrl);
-    gifImage.attr("alt", "Gif" + textInput);
+    gifImage.attr("alt", "Gif" + "" + textInput);
 
     $("#images").prepend(gifImage);
   });
@@ -54,7 +69,7 @@ function displayGif() {
 function renderButtons() {
 
   $("#new-button").empty();
-
+  defaultButtons();
   for (var i = 0; i < array.length; i++) {
 
     var button = $("<button>");
